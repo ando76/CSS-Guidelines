@@ -41,7 +41,6 @@ writing and architecting CSS.
 * [IDs](#ids)
 * [Selectors](#selectors)
   * [Over qualified selectors](#over-qualified-selectors)
-  * [Selector performance](#selector-performance)
 * [CSS selector intent](#css-selector-intent)
 * [`!important`](#important)
 * [Magic numbers and absolutes](#magic-numbers-and-absolutes)
@@ -436,7 +435,8 @@ Grid systems should, ideally, be set in percentages. Because I use grid systems
 to govern widths of columns and pages, I can leave components totally free of
 any dimensions (as discussed above).
 
-Font sizes I set in rems with a pixel fallback. This gives the accessibility
+Font sizes I set in rems with a pixel fallback. (IS IT WORTH DOING EMS TOO FOR OLD IEs? Need to test this).
+This gives the accessibility
 benefits of ems with the confidence of pixels. Here is a handy Sass mixin to
 work out a rem and pixel fallback for you (assuming you set your base font
 size in a variable somewhere):
@@ -446,11 +446,11 @@ size in a variable somewhere):
         font-size:$font-size / $base-font-size +rem;
     }
 
-I only use pixels for items whose dimensions were defined before the came into
-the site. This includes things like images and sprites whose dimensions are
+I only use pixels for 1 pixel borders and items whose dimensions were defined before they came into
+the site. This includes things like fixed images and sprites whose dimensions are
 inherently set absolutely in pixels.
 
-### Font sizing
+### Font sizing (EDIT THIS SECTION)
 
 I define a series of classes akin to a grid system for sizing fonts. These
 classes can be used to style type in a double stranded heading hierarchy. For a
@@ -461,11 +461,11 @@ full explanation of how this works please refer to my article
 
 **Shorthand CSS needs to be used with caution.**
 
-It might be tempting to use declarations like `background:red;` but in doing so
+It might be tempting to use declarations like `background: #f00;` but in doing so
 what you are actually saying is ‘I want no image to scroll, aligned top-left,
 repeating X and Y, and a background colour of red’. Nine times out of ten this
 won’t cause any issues but that one time it does is annoying enough to warrant
-not using such shorthand. Instead use `background-color:red;`.
+not using such shorthand. Instead use `background-color: #f00;`.
 
 Similarly, declarations like `margin:0;` are nice and short, but
 **be explicit**. If you actually only really want to affect the margin on
@@ -510,7 +510,8 @@ selectors are nice and short.
 
 Selectors as a whole should be kept short (e.g. one class deep) but the class
 names themselves should be as long as they need to be. A class of `.user-avatar`
-is far nicer than `.usr-avt`.
+is far nicer than `.usr-avt`. Exceptions here may be helper classes where certain 
+"namespace" conventions are used - (add examples here)
 
 **Remember:** classes are neither semantic or insemantic; they are sensible or
 insensible! Stop stressing about ‘semantic’ class names and pick something
@@ -532,12 +533,6 @@ above, we can instantly drop the `ul` and because we know `.nav` is a list, we
 therefore know that any `a` _must_ be in an `li`, so we can get `ul.nav li a{}`
 down to just `.nav a{}`.
 
-### Selector performance
-
-Whilst it is true that browsers will only ever keep getting faster at rendering
-CSS, efficiency is something you could do to keep an eye on. Short, unnested
-selectors, not using the universal (`*{}`) selector as the key selector, and
-avoiding more complex CSS3 selectors should help circumvent these problems.
 
 ## CSS selector intent
 
@@ -567,14 +562,12 @@ Be explicit; target the element you want to affect, not its parent. Never assume
 that markup won’t change. **Write selectors that target what you want, not what
 happens to be there already.**
 
-For a full write up please see my article
+For a full write up please see Harry Roberts' article
 [Shoot to kill; CSS selector intent](http://csswizardry.com/2012/07/shoot-to-kill-css-selector-intent/)
 
 ## `!important`
 
-It is okay to use `!important` on helper classes only. To add `!important`
-preemptively is fine, e.g. `.error{ color:red!important }`, as you know you will
-**always** want this rule to take precedence.
+Avoid using `!important`.
 
 Using `!important` reactively, e.g. to get yourself out of nasty specificity
 situations, is not advised. Rework your CSS and try to combat these issues by
@@ -609,10 +602,9 @@ IE stylesheets can, by and large, be totally avoided. The only time an IE
 stylesheet may be required is to circumvent blatant lack of support (e.g. PNG
 fixes).
 
-As a general rule, all layout and box-model rules can and _will_ work without an
-IE stylesheet if you refactor and rework your CSS. This means you never want to
-see `<!--[if IE 7]> element{ margin-left:-9px; } < ![endif]-->` or other such
-CSS that is clearly using arbitrary styling to just ‘make stuff work’.
+**WILL NEED TO JUDGE THIS FURTHER AS THE BUILD DEVELOPS. CURRENTLY WE USE CONDITIONAL COMMENTS IN
+THE HEAD TO SERVE UP AN IE STYLESHEET.**
+
 
 ## Debugging
 
