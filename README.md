@@ -30,7 +30,6 @@ writing and architecting CSS.
 * [Comments](#comments)
   * [Comments on steroids](#comments-on-steroids)
     * [Quasi-qualified selectors](#quasi-qualified-selectors)
-    * [Tagging code](#tagging-code)
     * [Object/extension pointers](#objectextension-pointers)
 * [Writing CSS](#writing-css)
 * [Building new components](#building-new-components)
@@ -139,8 +138,11 @@ This means that—as you go down the document—each section builds upon and
 inherits sensibly from the previous one(s). There should be less undoing of
 styles, less specificity problems and all-round better architected stylesheets.
 
-For further reading I cannot recommend Jonathan Snook’s
-[SMACSS](http://smacss.com) highly enough.
+For further reading and to get an idea of the principles that have shaped my work see these articles by Nicole Sullivan
+(http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/ 
+and http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/), 
+anything by [Harry Roberts](http://csswizardry.com) and also Jonathan Snook’s
+[SMACSS](http://smacss.com).
 
 ## Anatomy of rulesets
 
@@ -153,61 +155,27 @@ I have a number of standards when structuring rulesets.
 
 * Use hyphen delimited class names (except for BEM notation,
   [see below](#naming-conventions))
-* 4 space indented
+* 1 tab indent for properties
 * Multi-line
 * Declarations in relevance (NOT alphabetical) order
-* Indent vendor prefixed declarations so that their values are aligned
-* Indent our rulesets to mirror the DOM
 * Always include the final semi-colon in a ruleset
 
 A brief example:
 
     .widget{
-        padding:10px;
-        border:1px solid #BADA55;
-        background-color:#C0FFEE;
-        -webkit-border-radius:4px;
-           -moz-border-radius:4px;
-                border-radius:4px;
+        padding: 10px;
+        border: 1px solid #BADA55;
+        background-color: #C0FFEE;
     }
-        .widget-heading{
-            font-size:1.5rem;
-            line-height:1;
-            font-weight:bold;
-            color:#BADA55;
-            margin-right:-10px;
-            margin-left: -10px;
-            padding:0.25em;
-        }
 
-Here we can see that `.widget-heading` must be a child of `.widget` as we have
-indented the `.widget-heading` ruleset one level deeper than `.widget`. This is
-useful information to developers that can now be gleaned just by a glance at the
-indentation of our rulesets.
 
-We can also see that `.widget-heading`’s declarations are ordered by their
-relevance; `.widget-heading` must be a textual element so we begin with our
-text rules, followed by everything else.
+Exceptions to our multi-line rule are where a rule only has one property. E.g. these helper classes:
+    
+    .fl {float: left;}
+    .fr {float: right;}
+    .fn {float: none;}
 
-One exception to our multi-line rule might be in cases of the following:
-
-    .t10    { width:10% }
-    .t20    { width:20% }
-    .t25    { width:25% }       /* 1/4 */
-    .t30    { width:30% }
-    .t33    { width:33.333% }   /* 1/3 */
-    .t40    { width:40% }
-    .t50    { width:50% }       /* 1/2 */
-    .t60    { width:60% }
-    .t66    { width:66.666% }   /* 2/3 */
-    .t70    { width:70% }
-    .t75    { width:75% }       /* 3/4*/
-    .t80    { width:80% }
-    .t90    { width:90% }
-
-In this example (from [inuit.css’s table grid system](
-https://github.com/csswizardry/inuit.css/blob/master/inuit.css/partials/base/_tables.scss#L88))
-it makes more sense to single-line our CSS.
+Here, it makes more sense to single-line our CSS.
 
 ## Naming conventions
 
@@ -232,16 +200,17 @@ The naming convention follows this pattern:
 
 An **analogy** of how BEM classes work might be:
 
-    .person{}
-    .person--woman{}
-        .person__hand{}
-        .person__hand--left{}
-        .person__hand--right{}
+    .wheel{}
+    .wheel--small{}
+    .wheel--large{}
+        .wheel__rim{}
+        .wheel__rim--alloy{}
+        .wheel__rim--plastic{}
 
-Here we can see that the basic object we’re describing is a person, and that a
-different type of person might be a woman. We can also see that people have
-hands; these are sub-parts of people, and there are different variations,
-like left and right.
+Here we can see that the basic object we’re describing is a wheel, and that a
+different type of wheel might be a small one. We can also see that wheels have
+rims; these are sub-parts of the wheel, and there are different variations,
+like metal alloy and plastic.
 
 We can now namespace our selectors based on their base objects and we can also
 communicate what job the selector does; is it a sub-component (`__`) or a
@@ -258,9 +227,9 @@ their classes alone. Also, BEM syntax will typically compress (gzip) very well
 as compression favours/works well with repetition.
 
 Regardless of whether you need to use BEM or not, always ensure classes are
-sensibly named; keep them as short as possible but as long as necessary. Ensure
-any objects or abstractions are very vaguely named (e.g. `.ui-list`, `.media`)
-to allow for greater reuse. Extensions of objects should be much more explicitly
+sensibly named; keep them as short as possible but as long as necessary. **Ensure
+any objects or abstractions are very vaguely named** (e.g. `.ui-list`, `.media`)
+**to allow for greater reuse**. Extensions of objects should be much more explicitly
 named (e.g. `.user-avatar-link`). Don’t worry about the amount or length of
 classes; gzip will compress well written code _incredibly_ well.
 
@@ -297,20 +266,7 @@ Despite being a British developer—and spending all my life writing <i>colour</
 instead of <i>color</i>—I feel that, for the sake of consistency, it is better
 to always use US-English in CSS. CSS, as with most (if not all) other languages,
 is written in US-English, so to mix syntax like `color:red;` with classes like
-`.colour-picker{}` lacks consistency. I have previously suggested and advocated
-writing bilingual classes, for example:
-
-    .color-picker,
-    .colour-picker{
-    }
-
-However, having recently worked on a very large Sass project where there were
-dozens of colour variables (e.g. `$brand-color`, `$highlight-color` etc.),
-maintaining two versions of each variable soon became tiresome. It also means
-twice as much work with things like find and replace.
-
-In the interests of consistency, always name classes and variables in the locale
-of the language you are working with.
+`.colour-picker{}` lacks consistency. 
 
 ## Comments
 
@@ -332,7 +288,7 @@ I use a docBlock-esque commenting style which I limit to 80 characters in length
      * copy and paste.
      */
 
-You should document and comment our code as much as you possibly can, what may
+You should document and comment your code as much as you possibly can, what may
 seem or feel transparent and self explanatory to you may not be to another dev.
 Write a chunk of code then write about it.
 
@@ -376,24 +332,6 @@ Other examples might be:
 Here we can see where we intend each of these classes to be applied without
 actually ever impacting the specificity of the selectors.
 
-#### Tagging code
-
-If you write a new component then leave some tags pertaining to its function in
-a comment above it, for example:
-
-    /**
-     * ^navigation ^lists
-     */
-    .nav{}
-    
-    /**
-     * ^grids ^lists ^tables
-     */
-    .matrix{}
-
-These tags allow other developers to find snippets of code by searching for
-function; if a developer needs to work with lists they can run a find for
-`^lists` and find the `.nav` and `.matrix` objects (and possibly more).
 
 #### Object/extension pointers
 
@@ -401,7 +339,7 @@ When working in an object oriented manner you will often have two chunks of CSS
 (one being the skeleton (the object) and the other being the skin (the
 extension)) that are very closely related, but that live in very different
 places. In order to establish a concrete link between the object and its
-extension with use <i>object/extension pointers</i>. These are simply comments
+extension, use <i>object/extension pointers</i>. These are simply comments
 which work thus:
 
 In your base stylesheet:
@@ -458,10 +396,10 @@ will, each room likely has different coloured walls. OOCSS teaches us to
 abstract the shared styles out into a base object and then _extend_ this
 information with more specific classes to add the unique treatment(s).
 
-So, instead of building dozens of unique components, try and spot repeated
+So, **instead of building dozens of unique components, try and spot repeated
 design patterns across them all and abstract them out into reusable classes;
 build these skeletons as base ‘objects’ and then peg classes onto these to
-extend their styling for more unique circumstances.
+extend their styling for more unique circumstances**.
 
 If you have to build a new component split it into structure and skin; build the
 structure of the component using very generic classes so that we can reuse that
@@ -473,7 +411,7 @@ treatments.
 All components you build should be left totally free of widths; they should
 always remain fluid and their widths should be governed by a parent/grid system.
 
-Heights should **never** be be applied to elements. Heights should only be 
+Be careful with heights. Heights should only be 
 applied to things which had dimensions _before_ they entered the site (i.e.
 images and sprites). Never ever set heights on `p`s, `ul`s, `div`s, anything.
 You can often achieve the desired effect with `line-height` which is far more
