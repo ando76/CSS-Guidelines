@@ -1,15 +1,7 @@
 # General CSS notes, advice and guidelines
 
----
 
-## Translations
-
-* [Russian](https://github.com/matmuchrapna/CSS-Guidelines/blob/master/README%20Russian.md)
-* [Chinese](https://github.com/chadluo/CSS-Guidelines/blob/master/README.md)
-
----
-
-In working on large, long running projects with dozens of developers, it is
+In working on large, long running projects with several developers, it is
 important that we all work in a unified way in order to, among other things:
 
 * Keep stylesheets maintainable
@@ -21,7 +13,7 @@ goals.
 
 The first part of this document will deal with syntax, formatting and CSS
 anatomy, the second part will deal with approach, mindframe and attitude toward
-writing and architecting CSS. Exciting, huh?
+writing and architecting CSS.
 
 ## Contents
 
@@ -71,16 +63,15 @@ Limit your stylesheets to a maximum 80 character width where possible.
 Exceptions may be gradient syntax and URLs in comments. That’s fine, there’s
 nothing we can do about that.
 
-I prefer four (4) space indents over tabs and write multi-line CSS.
+I prefer tab indents and write multi-line CSS.
 
 ### One file vs. many files
 
-Some people prefer to work with single, large files. This is fine, and by
-sticking to the following guidelines you’ll encounter no problems. Since moving
-to Sass I have started sharding my stylesheets out into lots of tiny includes.
-This too is fine… Whichever method you choose, the following rules and
-guidelines apply. The only notable difference is with regards our table of
-contents and our section titles. Read on for further explanation…
+Since adopting an OOCSS methodology whilst refactoring our code-base in 2011 I started 
+splitting my stylesheets up into lots of partial files that were then bundled into one 
+request for production. This year (2013) I have started to use Sass and this also allows
+me to continue with this approach.
+The following rules and guidelines apply… 
 
 ### Table of contents
 
@@ -91,16 +82,15 @@ sections contained in the document, for example:
         $CONTENTS
     \*------------------------------------*/
     /**
-     * CONTENTS............You’re reading it!
      * RESET...............Set our reset defaults
-     * FONT-FACE...........Import brand font files
+     * GRID................The foundations
+     * ETC. ETC.
      */
 
 This will tell the next developer(s) exactly what they can expect to find in
 this file. Each item in the table of contents maps directly to a section title.
 
-If you are working in one big stylesheet, the corresponding section will also be
-in that file. If you are working across multiple files then each item in the
+In working across multiple files then each item in the
 table of contents will map to an include which pulls that section in.
 
 ### Section titles
