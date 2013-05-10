@@ -90,9 +90,6 @@ sections contained in the document, for example:
 This will tell the next developer(s) exactly what they can expect to find in
 this file. Each item in the table of contents maps directly to a section title.
 
-In working across multiple files then each item in the
-table of contents will map to an include which pulls that section in.
-
 ### Section titles
 
 The table of contents would be of no use unless it had corresponding section
@@ -105,7 +102,7 @@ titles. Denote a section thus:
 The `$` prefixing the name of the section allows us to run a find ([Cmd|Ctrl]+F)
 for `$[SECTION-NAME]` and **limit our search scope to section titles only**.
 
-If you are working in one large stylesheet, you leave five (5) carriage returns
+Within a stylesheet leave three (3) carriage returns
 between each section, thus:
 
     /*------------------------------------*\
@@ -117,17 +114,12 @@ between each section, thus:
     
     
     
-    
-    
     /*------------------------------------*\
-        $FONT-FACE
+        $GRID
     \*------------------------------------*/
 
-This large chunk of whitespace is quickly noticeable when scrolling quickly
-through larger files.
-
-If you are working across multiple, included stylesheets, start each of those
-files with a section title and there is no need for any carriage returns.
+Within partials, start each of those
+files with a section title and table of contents if necessary.
 
 ## Source order
 
@@ -137,11 +129,11 @@ advantage of inheritance and CSS’ first <i>C</i>; the cascade.
 A well ordered stylesheet will be ordered something like this:
 
 1. **Reset** – ground zero.
-2. **Elements** – unclassed `h1`, unclassed `ul` etc.
-3. **Objects and abstractions** — generic, underlying design patterns.
-4. **Components** – full components constructed from objects and their
+2. **Elements** – unclassed `p`, unclassed `ul` etc.
+3. **Objects and abstractions** — site wide, underlying design patterns, typography, icons, backgrounds etc.
+4. **Components** – components constructed from objects and their
    extensions.
-5. **Style trumps** – error states etc.
+5. **Helpers** – float, display, typography, spacing, border, color and state helpers.
 
 This means that—as you go down the document—each section builds upon and
 inherits sensibly from the previous one(s). There should be less undoing of
