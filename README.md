@@ -465,7 +465,7 @@ It might be tempting to use declarations like `background: #f00;` but in doing s
 what you are actually saying is ‘I want no image to scroll, aligned top-left,
 repeating X and Y, and a background colour of red’. Nine times out of ten this
 won’t cause any issues but that one time it does is annoying enough to warrant
-not using such shorthand. Instead use `background-color: #f00;`.
+not using shorthand properties. Instead use `background-color: #f00;`.
 
 Similarly, declarations like `margin:0;` are nice and short, but
 **be explicit**. If you actually only really want to affect the margin on
@@ -602,7 +602,7 @@ IE stylesheets can, by and large, be totally avoided. The only time an IE
 stylesheet may be required is to circumvent blatant lack of support (e.g. PNG
 fixes).
 
-**WILL NEED TO JUDGE THIS FURTHER AS THE BUILD DEVELOPS. CURRENTLY WE USE CONDITIONAL COMMENTS IN
+**WILL NEED TO JUDGE THIS AS THE BUILD DEVELOPS. CURRENTLY WE USE CONDITIONAL COMMENTS IN
 THE HEAD TO SERVE UP AN IE STYLESHEET.**
 
 
@@ -621,7 +621,7 @@ problem, not its symptoms.**
 
 ## Preprocessors
 
-Sass is my preprocessor of choice. **Use it wisely.** Use Sass to make your CSS
+Use Sass for CSS preprocessing. **Use it wisely.** Use Sass to make your CSS
 more powerful but avoid nesting like the plague! Nest only when it would
 actually be necessary in vanilla CSS, e.g.
 
