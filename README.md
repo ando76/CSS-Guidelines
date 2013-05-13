@@ -662,48 +662,49 @@ The following options are the ones we test against:
 
 Errors
 
-     Beware of broken box sizing
-     Require properties appropriate for display
-     Disallow duplicate properties
-     Disallow empty rules
-     Require use of known properties
+* Beware of broken box sizing
+* Require properties appropriate for display
+* Disallow duplicate properties
+* Disallow empty rules
+* Require use of known properties
 
 Compatibility
 
-     Disallow adjoining classes
-     Require compatible vendor prefixes
-     Require all gradient definitions
-     Disallow negative text-indent
-     Require standard property with vendor prefix
-     Require fallback colors
+* Disallow adjoining classes
+* Require compatible vendor prefixes
+* Require all gradient definitions
+* Disallow negative text-indent
+* Require standard property with vendor prefix
+* Require fallback colors
 
 Performance
 
-     Don't use too many web fonts
-     Disallow @import
-     Disallow duplicate background images
-     Disallow selectors that look like regexs
-     Disallow unqualified attribute selectors
-     Disallow units for 0 values
-     Disallow overqualified elements
-     Require shorthand properties
+* Don't use too many web fonts
+* Disallow @import
+* Disallow duplicate background images
+* Disallow selectors that look like regexs
+* Disallow unqualified attribute selectors
+* Disallow units for 0 values
+* Disallow overqualified elements
+* Require shorthand properties
 
 Maintainability & Duplication
 
-     Disallow too many floats
-     Don't use too many font sizes
-     Disallow IDs in selectors
-     Disallow !important
+* Disallow too many floats
+* Don't use too many font sizes
+* Disallow IDs in selectors
+* Disallow !important
 
 Accessibility
 
-     Disallow outline:none
+* Disallow outline:none
 
 OOCSS
 
-     Disallow qualified headings
-     Heading should only be defined once
+* Disallow qualified headings
+* Heading should only be defined once
 
 
-Any resultant error or warnings should be analysed and reported to the team.
+Any resultant error or warnings should be analysed and reported to the team to allow an appropriate 
+refactoring exercise to take place.
 
