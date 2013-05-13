@@ -47,7 +47,7 @@ writing and architecting CSS.
 * [Conditional stylesheets](#conditional-stylesheets)
 * [Debugging](#debugging)
 * [Preprocessors](#preprocessors)
-* [CSS Lint](#csslint)
+* [CSS Lint](#css-lint)
 
 ---
 
