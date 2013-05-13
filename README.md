@@ -154,7 +154,7 @@ I have a number of standards when structuring rulesets.
 
 * Use hyphen delimited class names (except for BEM notation,
   [see below](#naming-conventions))
-* 1 tab indent for properties
+* 1 tab indent for declarations
 * Multi-line
 * Declarations in relevance (NOT alphabetical) order
 * Always include the final semi-colon in a ruleset
