@@ -649,6 +649,8 @@ If you were to Sass this up you’d write it as:
         li{}
         a{}
     }
+    
+**MORE COULD BE ADDED HERE ON mixins, @extends etc**
 
 ## CSS Lint
 
