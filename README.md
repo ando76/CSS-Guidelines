@@ -47,6 +47,7 @@ writing and architecting CSS.
 * [Conditional stylesheets](#conditional-stylesheets)
 * [Debugging](#debugging)
 * [Preprocessors](#preprocessors)
+* [CSS Lint](#csslint)
 
 ---
 
@@ -656,6 +657,8 @@ If you were to Sass this up you’d write it as:
 Developers should run their CSS code through CSS Lint regularly throughout development. It is essential in 
 any large team of developers to ensure a baseline of consistency and convention compliance.
 
+The following options are the ones we test against:
+
 
 Errors
 
@@ -668,15 +671,11 @@ Errors
 Compatibility
 
      Disallow adjoining classes
-     
      Require compatible vendor prefixes
      Require all gradient definitions
      Disallow negative text-indent
      Require standard property with vendor prefix
      Require fallback colors
-     
-     
-     Bullet-proof @font-face(New)
 
 Performance
 
@@ -684,7 +683,6 @@ Performance
      Disallow @import
      Disallow duplicate background images
      Disallow selectors that look like regexs
-     
      Disallow unqualified attribute selectors
      Disallow units for 0 values
      Disallow overqualified elements
@@ -707,5 +705,5 @@ OOCSS
      Heading should only be defined once
 
 
-
+Any resultant error or warnings should be analysed and reported to the team.
 
