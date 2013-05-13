@@ -202,13 +202,13 @@ An **analogy** of how BEM classes work might be:
     .wheel{}
     .wheel--small{}
     .wheel--large{}
-        .wheel__rim{}
-        .wheel__rim--alloy{}
-        .wheel__rim--plastic{}
+        .wheel__hub-cap{}
+        .wheel__hub-cap--metal-alloy{}
+        .wheel__hub-cap--plastic{}
 
 Here we can see that the basic object we’re describing is a wheel, and that a
 different type of wheel might be a small one. We can also see that wheels have
-rims; these are sub-parts of the wheel, and there are different variations,
+hub caps; these are sub-parts of the wheel, and there are different variations, or modifiers
 like metal alloy and plastic.
 
 We can now namespace our selectors based on their base objects and we can also
@@ -450,11 +450,11 @@ I only use pixels for 1 pixel borders and items whose dimensions were defined be
 the site. This includes things like fixed images and sprites whose dimensions are
 inherently set absolutely in pixels.
 
-### Font sizing (EDIT THIS SECTION)
+### Font sizing
 
-I define a series of classes akin to a grid system for sizing fonts. These
-classes can be used to style type in a double stranded heading hierarchy. For a
-full explanation of how this works please refer to my article
+I define a series of classes akin to a grid system for sizing fonts. This means that any heading class can be 
+applied to any heading element - which is super flexible. This technique was originally penned by Nicole Sullivan of OOCSS fame. Harry Roberts 
+reports his own flavour of this in 
 [Pragmatic, practical font-sizing in CSS](http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css)
 
 ## Shorthand
@@ -648,3 +648,64 @@ If you were to Sass this up you’d write it as:
         li{}
         a{}
     }
+
+## CSS Lint
+
+[CSS Lint](http://csslint.net) is a code quality tool to help developers detect bad practices in their CSS.
+
+Developers should run their CSS code through CSS Lint regularly throughout development. It is essential in 
+any large team of developers to ensure a baseline of consistency and convention compliance.
+
+
+Errors
+
+     Beware of broken box sizing
+     Require properties appropriate for display
+     Disallow duplicate properties
+     Disallow empty rules
+     Require use of known properties
+
+Compatibility
+
+     Disallow adjoining classes
+     
+     Require compatible vendor prefixes
+     Require all gradient definitions
+     Disallow negative text-indent
+     Require standard property with vendor prefix
+     Require fallback colors
+     
+     
+     Bullet-proof @font-face(New)
+
+Performance
+
+     Don't use too many web fonts
+     Disallow @import
+     Disallow duplicate background images
+     Disallow selectors that look like regexs
+     
+     Disallow unqualified attribute selectors
+     Disallow units for 0 values
+     Disallow overqualified elements
+     Require shorthand properties
+
+Maintainability & Duplication
+
+     Disallow too many floats
+     Don't use too many font sizes
+     Disallow IDs in selectors
+     Disallow !important
+
+Accessibility
+
+     Disallow outline:none
+
+OOCSS
+
+     Disallow qualified headings
+     Heading should only be defined once
+
+
+
+
