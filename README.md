@@ -128,7 +128,7 @@ A well ordered stylesheet will be ordered something like this:
 
 1. **Reset** – ground zero.
 2. **Elements** – unclassed `p`, unclassed `ul` etc.
-3. **Objects and abstractions** — site wide, underlying design patterns, typography, icons, backgrounds etc.
+3. **Objects and abstractions** — site wide, the grid, underlying design patterns, typography, icons, oocss objects e.g. media object.
 4. **Components** – components constructed from objects and their
    extensions.
 5. **Helpers** – float, display, typography, spacing, border, color and state helpers.
