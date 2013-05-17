@@ -233,15 +233,6 @@ any objects or abstractions are very vaguely named** (e.g. `.ui-list`, `.media`)
 named (e.g. `.user-avatar-link`). Don’t worry about the amount or length of
 classes; gzip will compress well written code _incredibly_ well.
 
-### Classes in HTML
-
-In a bid to make things easier to read, separate classes is your HTML with two
-(2) spaces, thus:
-
-    <div class="foo--bar  bar__baz">
-
-This increased whitespace should hopefully allow for easier spotting and reading
-of multiple classes.
 
 ### JS hooks
 
